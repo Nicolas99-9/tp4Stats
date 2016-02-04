@@ -71,9 +71,31 @@ def tracerGrapheBinome(N,p1):
     plt.title('Produit P avec le graphe de newton')
     plt.show()
 
+def tracer(N,p1):
+    ma_liste = []
+    final = []
+    vals = [0.01 *r for r in range(0,50)]
+    ordonne = [1*r for r in range(0,N)]
+    for r in ordonne:
+        ma_liste.append(binom(N,r)*np.power(p1,r)*np.power((1-p1),(N-r)))
+    for e in vals:
+        l = list (ma_liste) #copy.copy (ma\liste)
+        to_add = []
+        for s in range(N):
+            if(l[s]>e):
+                to_add.append(l[s])
+        final.append(math.log(len(to_add),2))
+    plt.semilogy(vals,final)
+    plt.xlabel('r')
+    plt.ylabel('Probas * nombre de combinaisons')
+    plt.title('Produit P avec le graphe de newton')
+    plt.show()  
 
+
+ 
 #tracerGraphe(0.1,100)
 #tracerGraphe(0.1,1000)
 #tracerGrapheBinome(100)
 #tracerGrapheBinome(1000)
-tracerGrapheBinome(1000,0.1)
+#tracerGrapheBinome(1000,0.1)
+tracer(100,0.1)
